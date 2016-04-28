@@ -15,10 +15,10 @@ const requireSignin = passport.authenticate('local', {session : false});
 module.exports = function(app) {
   //protected comment routes
   app.get('/comment', requireAuth, Comment.get);
-  app.post('/comment', requireAuth, cleanInput, Comment.post);
+  app.post('/comment', cleanInput, requireAuth, Comment.post);
   app.delete('/comment/:id', requireAuth, Comment.delete);
 
   //auth routes
-  app.post('/signup', Auth.signup);
-  app.post('/signin', requireSignin, Auth.signin);
+  app.post('/signup', cleanInput, Auth.signup);
+  app.post('/signin', cleanInput, requireSignin, Auth.signin);
 }
