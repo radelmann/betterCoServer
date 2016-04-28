@@ -1,7 +1,7 @@
 var chai = require('chai');
 var expect = chai.expect;
 var request = require('supertest');
-var app = require('./index.js');
+var app = require('../index.js');
 
 var token;
 var userId;
@@ -70,7 +70,7 @@ describe("better company api - Server - REST API Routes", function() {
 
       var data = {
         message: 'this is a test post',
-        userName: 'test@username.com'
+        email: 'test@username.com'
       };
 
       request(app)
@@ -81,7 +81,7 @@ describe("better company api - Server - REST API Routes", function() {
           expect(res.body).to.exist;
           expect(res.body._id).to.exist;
           expect(res.body.message).to.equal('this is a test post');
-          expect(res.body.userName).to.equal('test@username.com');
+          expect(res.body.email).to.equal('test@username.com');
           _id = res.body._id;
         })
         .expect(200, done);
