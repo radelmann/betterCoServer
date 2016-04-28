@@ -1,11 +1,11 @@
 //starting point for auth server
 const express = require('express');
-const http = require('http');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./router');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const config = require('./config')
 
 //App Setup
 const app = express();
@@ -14,15 +14,13 @@ app.use(bodyParser.json({ type: '*/*'} ));
 app.use(cors());
 
 //db setup
-mongoose.connect('mongodb://localhost:auth/auth');
+mongoose.connect(config.db_url);
 
 router(app);
 
 // Server Setup
-const port = process.env.PORT || 3000;
+app.listen(config.port,function() { 
+  console.log('server listening on port...' + config.port);
+});
 
-const server = http.createServer(app);
-
-server.listen(port,function() { 
-  console.log('server listening on port...' + port);
-}); 
+module.exports = app;
