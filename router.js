@@ -18,7 +18,7 @@ module.exports = function(app) {
   });
 
   //protected comment routes
-  app.get('/comment', requireAuth, Comment.get);
+  app.get('/comments', requireAuth, Comment.get);
   app.post('/comment', cleanInput, requireAuth, Comment.post);
   app.delete('/comment/:id', requireAuth, Comment.delete);
 

@@ -29,7 +29,6 @@ describe("better company api - Server - REST API Routes", function() {
     });
   });
 
-
   describe('POST /signin', function() {
     it('responds with a 200 (successful) and returned json object of jwt token', function(done) {
 
@@ -55,7 +54,7 @@ describe("better company api - Server - REST API Routes", function() {
     it('responds with a 200 (successful) and the json array of messages', function(done) {
 
       request(app)
-        .get('/comment')
+        .get('/comments')
         .set('authorization', token)
         .expect(function(res) {
           expect(res.body.data).to.exist;
